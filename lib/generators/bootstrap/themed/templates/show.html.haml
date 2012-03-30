@@ -6,6 +6,6 @@
 <%- end -%>
 
 .form-actions
-  = link_to "Back", <%= controller_routing_path %>_path, :class => 'btn'
-  = link_to "Edit", edit_<%= singular_controller_routing_path %>_path(@<%= resource_name %>), :class => 'btn'
-  = link_to "Delete", <%= singular_controller_routing_path %>_path(@<%= resource_name %>), :method => "delete", :confirm => "#{t("web-app-theme.confirm", :default => "Are you sure?")}", :class => 'btn btn-danger'
+  = link_to t(".back", :default => [:"resource.back", "Back"]), <%= controller_routing_path %>_path, :class => 'btn'
+  = link_to t(".edit", :default => [:"resource.edit", "Edit"]), edit_<%= singular_controller_routing_path %>_path(@<%= resource_name %>), :class => 'btn'
+  = link_to t(".destroy", :default => [:"resource.destroy", "Destroy"]), <%= singular_controller_routing_path %>_path(@<%= resource_name %>), :method => "delete", :confirm => "#{t(".destroy_confirm", :default => [:"resource.destroy_confirm", "Are you sure?"])}", :class => 'btn btn-danger'
