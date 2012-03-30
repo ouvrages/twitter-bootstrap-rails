@@ -1,7 +1,7 @@
 = form_for @<%= resource_name %>, :html => { :class => 'form-horizontal' } do |f|
   %fieldset
     %legend
-      = controller.action_name.capitalize
+      = t(".title", :default => [:"resource.title.#{controller.action_name}", controller.action_name.capitalize])
       <%= model_name.titleize %>
     <%- columns.each do |column| -%>
     .control-group
