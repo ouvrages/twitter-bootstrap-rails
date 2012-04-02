@@ -18,8 +18,8 @@
         <%- end -%>
         %td= l(<%= resource_name %>.created_at)
         %td
-          = link_to t(".show", :default => [:"resource.show", "Show"]), <%= singular_controller_routing_path %>_path(<%= resource_name %>), :class => 'btn btn-mini'
-          = link_to t(".edit", :default => [:"resource.edit", "Edit"]), edit_<%= singular_controller_routing_path %>_path(<%= resource_name %>), :class => 'btn btn-mini'
-          = link_to t(".destroy", :default => [:"resource.destroy", "Destroy"]), <%= singular_controller_routing_path %>_path(<%= resource_name %>), :method => :delete, :confirm => "#{t(".destroy_confirm", :default => [:"resource.destroy_confirm", "Are you sure?"])}", :class => 'btn btn-mini btn-danger' 
+          = link_to t(".show", :default => [:"resource.show", "Show"]), <%= singular_controller_routing_path %>_path(<%= resource_name %>), :class => 'btn btn-mini' if can? :read, <%= resource_name %>
+          = link_to t(".edit", :default => [:"resource.edit", "Edit"]), edit_<%= singular_controller_routing_path %>_path(<%= resource_name %>), :class => 'btn btn-mini' if can? :update, <%= resource_name %>
+          = link_to t(".destroy", :default => [:"resource.destroy", "Destroy"]), <%= singular_controller_routing_path %>_path(<%= resource_name %>), :method => :delete, :confirm => "#{t(".destroy_confirm", :default => [:"resource.destroy_confirm", "Are you sure?"])}", :class => 'btn btn-mini btn-danger' if can? :destroy, <%= resource_name %>
 
-= link_to t(".new", :default => [:"resource.new", "New"]), new_<%= singular_controller_routing_path %>_path, :class => 'btn btn-primary'
+= link_to t(".new", :default => [:"resource.new", "New"]), new_<%= singular_controller_routing_path %>_path, :class => 'btn btn-primary' if can? :create, <%= model_name %>
