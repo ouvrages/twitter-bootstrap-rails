@@ -1,8 +1,7 @@
 = form_for @<%= resource_name %>, :html => { :class => 'form-horizontal' } do |f|
   %fieldset
     %legend
-      = t(".title", :default => [:"resource.title.#{controller.action_name}", controller.action_name.capitalize])
-      <%= model_name.titleize %>
+      = t(:".#{controller.action_name}.title", :default => "#{controller.action_name.capitalize} <%= model_name.sub(/^::/, '').humanize %>")
     <%- columns.each do |column| -%>
     .control-group
       = f.label :<%= column.name %>, :class => 'control-label'
@@ -10,5 +9,5 @@
         = f.<%= column.field_type %> :<%= column.name %>, :class => '<%= column.field_type %>'
     <%- end -%>
     .form-actions
-      = f.submit nil, :class => 'btn btn-primary'
-      = link_to t(".cancel", :default => [:"resource.cancel", "Cancel"]), <%= controller_routing_path %>_path, :class => 'btn'
+      = f.submit :class => 'btn btn-primary'
+      = link_to t("helpers.cancel", :default => "Cancel"), <%= controller_routing_path %>_path, :class => 'btn'
